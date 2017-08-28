@@ -12,7 +12,8 @@ require './ManagementDB.rb'
 #puts JSON.pretty_generate(JSON.parse(response.body))
 
 db = ManagementDB.new
-db.insertData("椿野 美幸(劔谷高校３年)",'0101',1)
+#db.insertData("後藤邑子(声優)",'0828', 5)
+#db.insertData("水橋かおり(声優)",'0828', 5)
 #db.insertData("辻垣内 智葉(臨海女子３年・部長)",'0102')
 #db.insertData("大星 淡(白糸台高校１年)",'1215')
 #db.updateData(1, "辻垣内 智葉(臨海女子３年・部長)",'0102',11)
@@ -27,7 +28,7 @@ for row in data do
 
 end
 puts "---------------------------------------------------"
-data = db.selectDataName('年')
+data = db.selectDataName('声優')
 for row in data do
 
   puts row['id']
@@ -37,7 +38,7 @@ for row in data do
 
 end
 puts "---------------------------------------------------"
-data = db.selectDataBirthDay('0102')
+data = db.selectDataBirthDay('0828')
 for row in data do
 
   puts row['id']

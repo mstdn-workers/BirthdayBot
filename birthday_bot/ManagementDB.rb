@@ -30,20 +30,20 @@ class ManagementDB
 
   #データ検索
   def selectDataId(id)
-    sql = 'select * from birthday where id=?'
+    sql = 'select * from birthday where id=? order by priority, id'
     return selectData(sql, id)
   end
 
   #データ検索
   def selectDataName(name)
     like = '%' + name + '%'
-    sql = 'select * from birthday where name like ?'
+    sql = 'select * from birthday where name like ? order by priority, id'
     return selectData(sql, like)
   end
 
   #データ検索
   def selectDataBirthDay(birthday)
-    sql = 'select * from birthday where birthday=?'
+    sql = 'select * from birthday where birthday=? order by priority, id'
     return selectData(sql, birthday)
   end
 end
