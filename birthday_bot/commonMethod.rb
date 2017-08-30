@@ -19,7 +19,7 @@ end
 
 #文字チェック
 def checkText(str)
-  if str =~ /[\'\"\\\|\n]/ then
+  if str =~ /[\'\"\\\|\n]|http:/ then
       return false
   else
       return true

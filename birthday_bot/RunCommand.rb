@@ -141,7 +141,7 @@ class RunCommand
     #日付チェック
     if !checkDate(birthday) then
         @view_message = "誕生日が不正です\n"
-        return false
+        return showHelp
     end
 
     #日付の編集
@@ -164,7 +164,7 @@ class RunCommand
     #文字チェック
     if !checkText(name) then
         @view_message = "名前が不正です\n"
-        return false
+        return showHelp
     end
 
     #データ照会
@@ -185,7 +185,7 @@ class RunCommand
     #文字チェック
     if !checkText(option) then
         @view_message = "オプションが不正です\n"
-        return false
+        return showHelp
     end
 
     #データ照会
@@ -206,7 +206,7 @@ class RunCommand
     #数値チェック
     if !checkNum(id) then
         @view_message = "IDが不正です\n"
-        return false
+        return showHelp
     end
 
     #データ照会

@@ -22,8 +22,8 @@
 |---|---|
 |id|数値のみ許容|
 |birthday|M/D or MM/DD or MMDD|
-|name|' " &#124; \ \n は禁止文字|
-|option|' " &#124; \ \n は禁止文字|
+|name|' " &#124; \ \n は禁止文字、またURLは禁止|
+|option|' " &#124; \ \n は禁止文字、またURLは禁止|
 |priority|数値のみ許容|
 
 ### コマンド一覧
