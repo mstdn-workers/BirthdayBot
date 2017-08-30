@@ -7,6 +7,7 @@ sql = <<-SQL
   create table birthday (
     id integer primary key,
     name text,
+    option text,
     birthday text,
     priority integer
   );

@@ -1,18 +1,19 @@
 require 'sqlite3'
 class ManagementDB
   def initialize
-    @db = SQLite3::Database.new 'birthday.db'
+    cur_path = File.expand_path(File.dirname($0))
+    @db = SQLite3::Database.new "#{cur_path}/birthday.db"
   end
 
   #データ登録
-  def insertData(name, birthday, priority=10)
-    @db.execute('insert into birthday (name,birthday,priority) values (?,?,?)', name, birthday, priority)
+  def insertData(name, birthday, option: "", priority: 10)
+    @db.execute('insert into birthday (name,option,birthday,priority) values (?,?,?,?)', name, option, birthday, priority)
     return selectDataId(@db.last_insert_row_id)
   end
 
   #データ更新
-  def updateData(id, name, birthday, priority=10)
-    @db.execute('update birthday set name=?, birthday=?, priority=? where id=?', name, birthday, priority, id)
+  def updateData(id, name, birthday, option: "", priority: 10)
+    @db.execute('update birthday set name=?, option=?, birthday=?, priority=? where id=?', name, option, birthday, priority, id)
     return selectDataId(id)
   end
 
@@ -23,6 +24,7 @@ class ManagementDB
     return data
   end
 
+  #データ検索
   def selectData(sql, data)
     list = Array.new()
     @db.results_as_hash = true
@@ -42,6 +44,13 @@ class ManagementDB
   def selectDataName(name)
     like = '%' + name + '%'
     sql = 'select * from birthday where name like ? order by birthday, priority, id'
+    return selectData(sql, like)
+  end
+
+  #データ検索
+  def selectDataOption(option)
+    like = '%' + option + '%'
+    sql = 'select * from birthday where option like ? order by birthday, priority, id'
     return selectData(sql, like)
   end
 

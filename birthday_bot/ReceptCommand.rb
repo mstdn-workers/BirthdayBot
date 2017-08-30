@@ -1,6 +1,7 @@
 # coding: utf-8
-require "./commonValue.rb"
-require "./RunCommand.rb"
+cur_path = File.expand_path(File.dirname($0))
+require "#{cur_path}/commonValue.rb"
+require "#{cur_path}/RunCommand.rb"
 
 rc = RunCommand.new
 
@@ -22,7 +23,7 @@ EM.run do
   # RTM APIから情報を受け取った時の処理
   ws.on :message do |event|
     data = JSON.parse(event.data)
-    p [:message, data] 
+    #p [:message, data] 
     if data['text'].nil? then
       next
     end

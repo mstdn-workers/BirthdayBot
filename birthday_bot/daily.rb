@@ -1,19 +1,28 @@
 # coding: utf-8
-require "./commonValue.rb"
+cur_path = File.expand_path(File.dirname($0))
+require "#{cur_path}/commonValue.rb"
+require "#{cur_path}/commonMethod.rb"
 
 #今日の日付を取得
 d = Date.today
 today = format("%02d", d.month) + format("%02d", d.day)
 
 output = "今日は\n"
-
 #DBアクセス
 db = ManagementDB.new
 data = db.selectDataBirthDay(today)
+i = 0
 for row in data do
-  output = output + "・" + row["name"].force_encoding("UTF-8") + "さん\n"
+  name = row["name"].force_encoding("UTF-8")
+  option = row["option"].force_encoding("UTF-8")
+  output = output + "・" + editViewName(name, option) + "\n"
+i += 1
 end
-output = output + "のお誕生日です"
+if i <= 0 then
+  output = "今日がお誕生日の人は登録されていません"
+else
+  output = output + "のお誕生日です"
+end
 
 response = HTTP.post($post_url, params: {
     token: $token,
