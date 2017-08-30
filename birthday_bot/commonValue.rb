@@ -12,6 +12,7 @@ $channel = "C6VFTMXM5"   ##’a¶“ú
 $server_url = "mstdn-workers.slack.com"
 $post_url = "https://" + $server_url + "/api/chat.postMessage"
 $rtm_url = "https://" + $server_url + "/api/rtm.start"
+$help_url = "https://github.com/mstdn-workers/BirthdayBot/blob/master/readme.md"
 
 $command   = "birthday"
 $ins       = "birthday ins"
