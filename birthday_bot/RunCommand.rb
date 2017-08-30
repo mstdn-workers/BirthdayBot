@@ -63,6 +63,11 @@ class RunCommand
     #日付の編集
     date = editDate(birthday)
 
+    #データ存在チェック
+    if @db.checkDataExist(name, option, date) then
+      return "同一のデータが既に存在します"
+    end
+
     #データ登録
     data = @db.insertData(name, date, option: option, priority: priority)
     return outputMessage(data, $type_ins)

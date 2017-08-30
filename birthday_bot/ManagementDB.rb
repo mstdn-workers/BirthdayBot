@@ -59,4 +59,17 @@ class ManagementDB
     sql = 'select * from birthday where birthday=? order by priority, id'
     return selectData(sql, birthday)
   end
+
+  #データ存在チェック
+  def checkDataExist(name, option, birthday)
+    sql = 'select count(id) as count from birthday where name=? and option=? and birthday=?'
+    @db.results_as_hash = true
+    @db.execute(sql, name, option, birthday) do |row|
+      if row['count'].to_i >= 1 then
+        return true
+      else
+        return false
+      end
+    end
+  end
 end
