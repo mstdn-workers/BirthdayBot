@@ -26,6 +26,8 @@ class ManagementDB
 
   #データ検索
   def selectData(sql, data)
+p sql
+p data
     list = Array.new()
     @db.results_as_hash = true
     @db.execute(sql, data) do |row|
@@ -41,17 +43,33 @@ class ManagementDB
   end
 
   #データ検索
-  def selectDataName(name)
+  def selectDataName(name, month: "")
     like = '%' + name + '%'
-    sql = 'select * from birthday where name like ? order by birthday, priority, id'
-    return selectData(sql, like)
+    if month == "" then
+      sql = 'select * from birthday where name like ? order by birthday, priority, id'
+      return selectData(sql, like)
+    else
+      mStr = month + "01"
+      mEnd = month + "31"
+      where = [like, mStr, mEnd]
+      sql = 'select * from birthday where name like ? and birthday between ? and ? order by birthday, priority, id'
+      return selectData(sql, where)
+    end
   end
 
   #データ検索
-  def selectDataOption(option)
+  def selectDataOption(option, month: "")
     like = '%' + option + '%'
-    sql = 'select * from birthday where option like ? order by birthday, priority, id'
-    return selectData(sql, like)
+    if month == "" then
+      sql = 'select * from birthday where option like ? order by birthday, priority, id'
+      return selectData(sql, like)
+    else
+      mStr = month + "01"
+      mEnd = month + "31"
+      where = [like, mStr, mEnd]
+      sql = 'select * from birthday where option like ? and birthday between ? and ? order by birthday, priority, id'
+      return selectData(sql, where)
+    end
   end
 
   #データ検索

@@ -167,9 +167,27 @@ class RunCommand
         return showHelp
     end
 
+    if list.length >= 3 then
+      month = list[2].strip
+      #数値チェック
+      if !checkNum(month) then
+          @view_message = "月が不正です\n"
+          return showHelp
+      end
+      if month.to_i < 1 or month.to_i > 12 then
+          @view_message = "月が不正です\n"
+          return showHelp
+      end
+      month = format("%02d", month.to_i)
+      viewName = name + "｜" + month + "月"
+    else
+      month = ""
+      viewName = name
+    end
+
     #データ照会
-    data = @db.selectDataName(name)
-    return outputListName(data, name)
+    data = @db.selectDataName(name, month: month)
+    return outputListName(data, viewName)
 
   end
 
@@ -188,9 +206,27 @@ class RunCommand
         return showHelp
     end
 
+    if list.length >= 3 then
+      month = list[2].strip
+      #数値チェック
+      if !checkNum(month) then
+          @view_message = "月が不正です\n"
+          return showHelp
+      end
+      if month.to_i < 1 or month.to_i > 12 then
+          @view_message = "月が不正です\n"
+          return showHelp
+      end
+      month = format("%02d", month.to_i)
+      viewName = option + "｜" + month + "月"
+    else
+      month = ""
+      viewName = option
+    end
+
     #データ照会
-    data = @db.selectDataOption(option)
-    return outputListName(data, option)
+    data = @db.selectDataOption(option, month: month)
+    return outputListName(data, viewName)
 
   end
 
@@ -312,7 +348,7 @@ class RunCommand
       output = output + "優先順位は" + priority.to_s + "です\n"
     elsif type == $type_del then
       output = "ID=" + id.to_s + "\n"
-      output = output + viewName + "を削除しました\n"
+      output = output + viewName + "削除しました\n"
     end
 
     return output

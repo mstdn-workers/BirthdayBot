@@ -15,6 +15,7 @@
 |name|名前|
 |option|属性<br>ex. 大空あかりさん（アイカツ！） の「アイカツ！」の部分|
 |priority|表示優先順位（小さいほうが上に来る）|
+|month|月|
 
 ### 変数書式
 
@@ -25,6 +26,7 @@
 |name|' " &#124; \ \n は禁止文字、またURLは禁止|
 |option|' " &#124; \ \n は禁止文字、またURLは禁止|
 |priority|数値のみ許容|
+|month|1～12の整数のみ|
 
 ### コマンド一覧
 
@@ -34,11 +36,11 @@
 
 #### 名前検索 指定したワードを名前に含むデータを出力する
 
-    birthday show name | name 
+    birthday show name | name | month（省略可）
 
 #### オプション検索 指定したワードをオプションに含むデータを出力する
 
-    birthday show option | option 
+    birthday show option | option | month（省略可）
 
 #### ID検索 指定したIDのデータを出力する
 
