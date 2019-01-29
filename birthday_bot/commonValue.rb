@@ -8,11 +8,11 @@ require "#{cur_path}/ManagementDB.rb"
 
 $token = ENV["SLACK_TOKEN"]
 #$channel = "C5DCBBE6L"  ##create_bot
-$channel = "C6VFTMXM5"   ##�a����
-$server_url = "mstdn-workers.slack.com"
+$channel = ENV["SLACK_CHANNEL"]   ##デイリー投稿先チャンネル
+$server_url = ENV["SLACK_SERVER"]   ##対象ワークスペース
 $post_url = "https://" + $server_url + "/api/chat.postMessage"
 $rtm_url = "https://" + $server_url + "/api/rtm.start"
-$help_url = "https://github.com/mstdn-workers/BirthdayBot/blob/master/readme.md"
+$help_url = "https://github.com/rinSouma/BirthdayBot/blob/master/readme.md"
 
 $command   = "birthday"
 $ins       = "birthday ins"
